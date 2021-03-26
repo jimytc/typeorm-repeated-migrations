@@ -1,5 +1,6 @@
-import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Tag } from "./Tag";
+import { MapPostToTag } from "./MapPostToTag";
 
 @Entity('post')
 export class Post extends BaseEntity {
@@ -11,6 +12,9 @@ export class Post extends BaseEntity {
   subject: string;
 
   @ManyToMany(() => Tag, t => t.posts)
-  @JoinTable()
+  @JoinTable({ name: 'mapPostToTag' })
   tags: Tag[];
+
+  @OneToMany(() => MapPostToTag, (t) => t.post)
+  mapPostToTags: MapPostToTag[];
 }
