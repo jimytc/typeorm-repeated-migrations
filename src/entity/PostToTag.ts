@@ -3,7 +3,7 @@ import { Tag } from "./Tag";
 import { Post } from "./Post";
 
 @Entity('mapPostToTag')
-export class MapPostToTag extends BaseEntity {
+export class PostToTag extends BaseEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
@@ -17,9 +17,9 @@ export class MapPostToTag extends BaseEntity {
   @Column()
   order: number;
 
-  @ManyToOne(() => Post, t => t.mapPostToTags)
+  @ManyToOne(() => Post, t => t.postToTags)
   post: Post;
 
-  @ManyToOne(() => Tag, t => t.mapPostToTags)
+  @ManyToOne(() => Tag, t => t.postToTags)
   tag: Tag;
 }
